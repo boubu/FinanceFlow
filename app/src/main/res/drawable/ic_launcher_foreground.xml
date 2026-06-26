@@ -7,10 +7,16 @@
     <path
         android:fillColor="#1B5E20"
         android:pathData="M0,0H108V108H0Z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M28,38H80A6,6 0 0,1 86,44V70A6,6 0 0,1 80,76H28A6,6 0 0,1 22,70V44A6,6 0 0,1 28,38Z" />
-    <path
-        android:fillColor="#1B5E20"
-        android:pathData="M68,57A9,9 0 1,1 86,57A9,9 0 1,1 68,57Z" />
+    <group
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:pivotX="54"
+        android:pivotY="54">
+        <path
+            android:fillColor="#FFFFFF"
+            android:pathData="M28,38H80A6,6 0 0,1 86,44V70A6,6 0 0,1 80,76H28A6,6 0 0,1 22,70V44A6,6 0 0,1 28,38Z" />
+        <path
+            android:fillColor="#1B5E20"
+            android:pathData="M68,57A9,9 0 1,1 86,57A9,9 0 1,1 68,57Z" />
+    </group>
 </vector>
