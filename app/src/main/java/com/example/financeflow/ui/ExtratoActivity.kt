@@ -1,8 +1,10 @@
 package com.example.financeflow.ui
 
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.financeflow.FinanceFlowApplication
@@ -33,6 +35,18 @@ class ExtratoActivity : AppCompatActivity() {
         configurarRecyclerView()
         observarLancamentos()
         observarSaldo()
+        configurarBotaoTrocarTema()
+    }
+
+    private fun configurarBotaoTrocarTema() {
+        binding.fabThemeToggle.setOnClickListener {
+            val modoAtual = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+            if (modoAtual == Configuration.UI_MODE_NIGHT_YES) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
     }
 
     private fun configurarRecyclerView() {

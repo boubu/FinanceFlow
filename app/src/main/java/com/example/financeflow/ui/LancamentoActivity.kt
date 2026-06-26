@@ -1,10 +1,12 @@
 package com.example.financeflow.ui
 
 import android.app.DatePickerDialog
+import android.content.res.Configuration
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import com.example.financeflow.FinanceFlowApplication
 import com.example.financeflow.R
@@ -14,6 +16,7 @@ import com.example.financeflow.viewmodel.FinanceFlowViewModelFactory
 import com.example.financeflow.viewmodel.LancamentoViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 class LancamentoActivity : AppCompatActivity() {
@@ -33,9 +36,37 @@ class LancamentoActivity : AppCompatActivity() {
         binding = ActivityLancamentoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        savedInstanceState?.let {
+            if (it.containsKey("DATA_MILLIS")) {
+                val millis = it.getLong("DATA_MILLIS")
+                dataSelecionadaMillis = millis
+                binding.textData.text = formatoExibicaoData.format(Date(millis))
+                binding.textData.setTextColor(getColor(R.color.text_primary))
+            }
+        }
+
         configurarSeletorDeData()
         configurarBotaoSalvar()
         configurarBotaoVerExtrato()
+        configurarBotaoTrocarTema()
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        dataSelecionadaMillis?.let {
+            outState.putLong("DATA_MILLIS", it)
+        }
+    }
+
+    private fun configurarBotaoTrocarTema() {
+        binding.fabThemeToggle.setOnClickListener {
+            val modoAtual = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+            if (modoAtual == Configuration.UI_MODE_NIGHT_YES) {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+            } else {
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
     }
 
     private fun configurarSeletorDeData() {
