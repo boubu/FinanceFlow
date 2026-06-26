@@ -27,4 +27,5 @@
     <string name="tema_claro">Tema: Sempre Claro</string>
     <string name="tema_escuro">Tema: Sempre Escuro</string>
     <string name="tema_sistema">Tema: Automático (Sistema)</string>
+    <string name="r_0_00">R$ 0,00</string>
 </resources>
